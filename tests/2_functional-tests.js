@@ -13,6 +13,8 @@ var server = require('../server');
 
 chai.use(chaiHttp);
 
+let id1 = '';
+
 suite('Functional Tests', function() {
   
     suite('POST /api/issues/{project} => object with issue data', function() {
@@ -29,9 +31,14 @@ suite('Functional Tests', function() {
         })
         .end(function(err, res){
           assert.equal(res.status, 200);
-          
-          //fill me in too!
-          
+          assert.equal(res.body.issue_title, 'Title');
+          assert.equal(res.body.issue_text, 'text');
+          assert.equal(res.body.created_by, 'Functional Test - Every field filled in');
+          assert.equal(res.body.assigned_to, 'Chai and Mocha');
+          assert.equal(res.body.status_text, 'In QA');
+          assert.equal(res.body.project, 'test');
+          id1 = res.body._id;
+          console.log('id 1 has been set as ' + id1);          
           done();
         });
       });
