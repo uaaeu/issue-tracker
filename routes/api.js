@@ -52,7 +52,7 @@ module.exports = function (app) {
       })
       newIssue.save((err, savedIssue)=>{
         if(!err && savedIssue){
-          console.log(savedIssue)
+          return res.json(savedIssue)
         }
       })
     })
